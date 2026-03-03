@@ -20,6 +20,7 @@ cds.lib
 *.wlf
 *.shm
 *.trn
+*.tcl
 
 # OS junk
 .DS_Store
@@ -29,6 +30,10 @@ Thumbs.db
 .bashrc
 .bash_profile
 .bash_logout
+
+
+#run
+run.sh
 
 #MISC
 specman
