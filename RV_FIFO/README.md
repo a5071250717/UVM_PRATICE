@@ -1,6 +1,6 @@
 ## Simulator
 - Cadence Xcelium 25.03
-- Options used: `-access +rw -seed random -coverage functional
+- Options used: -access +rw -seed random -coverage functional
 
 ## Run
 - ./run_xrun.sh rv_test random
