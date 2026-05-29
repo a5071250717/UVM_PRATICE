@@ -3,6 +3,7 @@
 - Options used: -access +rw -seed random -coverage functional
 
 ## 2. Project Overview
+<img width="500" height="120" alt="image" src="https://github.com/user-attachments/assets/48fc35e3-4568-4d21-aca0-cdefd754ccf9" />
 
 This project verifies a parameterized ready/valid FIFO design using a UVM-based verification environment.
 The DUT, `RV_FIFO`, implements a synchronous FIFO with ready/valid handshake on both input and output sides.  
@@ -57,7 +58,7 @@ module RV_FIFO #(
   - Randomizes n_times in range 1 to 10.
   - Generates randomized rv_txn items.
   - Each item has randomized data and randomized gap
-  - Used by test `case rv_random_test`
+  - Used by test case `rv_random_test`
 ### 4.3 Direct Sequence
 - class name `rv_d_seq`
 - Purpose
@@ -157,9 +158,16 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-rv_sqr["sqr"] --> |seq_item_port|rv_drv_source["drv_source"]
-rv_mon_in["mon_in"] -->|uvm_tlm_analysis_fifo|rv_scb["scb"]
-rv_mon_out["mon_out"] -->|uvm_tlm_analysis_fifo.analysis_export|rv_scb["scb"]
-rv_mon_out["mon_out"] -->|uvm_analysis_port.analysis_export|rv_subscriber["subscriber"]
+rv_sqr["sqr"] --> |seq_item_port to seq_item_export|rv_drv_source["drv_source"]
+rv_mon_in["mon_in"] -->|uvm_analysis_port to uvm_analysis_export|rv_scb["scb"]
+rv_mon_out["mon_out"] -->|uvm_analysis_port to uvm_analysis_export|rv_scb["scb"]
+rv_mon_out["mon_out"] -->|uvm_analysis_port to uvm_analysis_imp|rv_subscriber["subscriber"]
 ```
+
+- When use uvm_tlm_analysis_fifo as reference model in scoreboard
+  <img width="800" height="100" alt="image" src="https://github.com/user-attachments/assets/5b018a18-a70b-4ae4-9fe0-2a81ae60b6ab" />
+
+- When use queue as reference model in scoreboard
+  <img width="800" height="100" alt="image" src="https://github.com/user-attachments/assets/1fb8dab4-de89-4473-b470-7056441a7064" />
+
 
